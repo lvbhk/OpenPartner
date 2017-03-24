@@ -48,23 +48,23 @@
    `Sing=202cb962ac59075b964b07152d234b70`  
  1. Post Body  
   
-  ```json
+```json
   {
   "Warehouse":"巴黎仓库",
   "PackageId":"1234567890",
   "Status":10,
  }
-  ```  
+```  
 
 1. 返回结果  
  
- ```json
+```json
 	{
 	"Status":true,
 	"StateCode":10
 	"Message":"处理成功"
 	}
-  ```  	
+```  	
 
  
 **Free Software, Hell Yeah!**
