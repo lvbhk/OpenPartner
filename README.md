@@ -49,10 +49,12 @@
 	"OutPackageId":"ac123578",
 	"ExpressType":"法国邮政",
 	"IsUPU":true,
-	"DiliveryTime":“2017-03-21 12:03:45”,
+	"DiliveryTime":"2017-03-21 12:03:45",
   }
 ```
 
+   - 字段定义
+     - IsUPU 是否万国邮联
 - 返回结果:
  
 ```json
@@ -84,8 +86,8 @@
 ```
 
 - 返回结果:
- 
-```json
+
+ ```json
 {
 	"Status":true,
 	"Message":"处理成功"
@@ -103,7 +105,7 @@
   `Sing=202cb962ac59075b964b07152d234b70`  
 - Post Body:
 
-```json
+ ```json
   {
 	"Warehouse":"巴黎仓库",
 	"PackageId":"1234567890",
@@ -118,7 +120,7 @@
 
 - 返回结果:
  
-```json
+ ```json
 {
 	"Status":true,
 	"Message":"处理成功"
