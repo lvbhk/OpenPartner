@@ -44,6 +44,7 @@
 
  ```json
   {
+  	"PartnerId":"832488781855727619",
 	"Warehouse":"巴黎仓库",
 	"PackageId":"1234567890",
 	"OutPackageId":"ac123578",
@@ -59,6 +60,7 @@
  
 ```json
 {
+	"StatusCode":200,
 	"Status":true,
 	"Message":"处理成功"
 }
@@ -89,6 +91,7 @@
 
  ```json
 {
+	"StatusCode":200,
 	"Status":true,
 	"Message":"处理成功"
 }
@@ -122,6 +125,7 @@
  
  ```json
 {
+	"StatusCode":200,
 	"Status":true,
 	"Message":"处理成功"
 }
