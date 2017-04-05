@@ -44,7 +44,7 @@
 
  ```json
   {
-  	"PartnerId":"832488781855727619",
+	"PartnerId":"832488781855727619",
 	"Warehouse":"巴黎仓库",
 	"PackageId":"1234567890",
 	"OutPackageId":"ac123578",
