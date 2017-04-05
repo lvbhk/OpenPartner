@@ -37,7 +37,7 @@
 
 - 方法:`POST`
 - 参数:`JSON`
-- URL:`api.cnyto.me/dilivery?`
+- URL:`api.cnyto.me/delivery?`
 - Post Url参数:  
   `Sing=202cb962ac59075b964b07152d234b70`  
 - Post Body:
@@ -51,7 +51,8 @@
 	"ExpressType":"法国邮政",
 	"IsUPU":true,
 	"DiliveryTime":"2017-03-21 12:03:45",
-  }
+	"UserName":"Jack"	
+  }
 ```
 
    - 字段定义
@@ -83,7 +84,7 @@
   {
 	"Warehouse":"巴黎仓库",
 	"PackageId":"1234567890",
-	"RebateOrderStatus":10,
+	"RebateOrderStatus":10
   }
 ```
 
