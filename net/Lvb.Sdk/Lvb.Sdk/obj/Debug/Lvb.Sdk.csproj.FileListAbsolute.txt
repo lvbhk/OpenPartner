@@ -1,0 +1,7 @@
+D:\LVB\git\net\Lvb.Sdk\Lvb.Sdk\bin\Debug\Lvb.Sdk.exe.config
+D:\LVB\git\net\Lvb.Sdk\Lvb.Sdk\obj\Debug\Lvb.Sdk.csprojResolveAssemblyReference.cache
+D:\LVB\git\net\Lvb.Sdk\Lvb.Sdk\bin\Debug\Lvb.Sdk.exe
+D:\LVB\git\net\Lvb.Sdk\Lvb.Sdk\bin\Debug\Lvb.Sdk.pdb
+D:\LVB\git\net\Lvb.Sdk\Lvb.Sdk\bin\Debug\Newtonsoft.Json.dll
+D:\LVB\git\net\Lvb.Sdk\Lvb.Sdk\obj\Debug\Lvb.Sdk.exe
+D:\LVB\git\net\Lvb.Sdk\Lvb.Sdk\obj\Debug\Lvb.Sdk.pdb
