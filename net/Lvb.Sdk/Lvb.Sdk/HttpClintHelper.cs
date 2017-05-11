@@ -11,8 +11,9 @@ namespace Lvb.Sdk
 {
     public class HttpClintHelper
     {
-        private static async Task<bool> DoPost(string callbackUrl, string json)
+        private static async Task<Result> DoPost(string callbackUrl, string json)
         {
+            Result result = new Result() { Status = false };
             var handler = new HttpClientHandler();
             using (var http = new HttpClient(handler))
             {
@@ -24,10 +25,13 @@ namespace Lvb.Sdk
                     //await异步等待回应
                     var response = await http.PostAsync(callbackUrl, content);
                     //确保HTTP成功状态值
-                    response.EnsureSuccessStatusCode();
+                    //response.EnsureSuccessStatusCode();
+
                     if (response.IsSuccessStatusCode)
                     {
-                        return true;
+                        Task<string> resultStr = response.Content.ReadAsStringAsync();
+                        result = JsonConvert.DeserializeObject<Result>(resultStr.Result);
+                        return result;
                     }
                 }
                 catch (Exception ex)
@@ -35,19 +39,16 @@ namespace Lvb.Sdk
                     //todo: Exception
                 }
             }
-            return false;
+            return result;
         }
 
-        public static bool Delivery(DeliveryFilterModel model, string token)
+        public static Result Delivery(DeliveryFilterModel model, string token)
         {
-            string md5str = model.PartnerId + model.Warehouse + model.ExpressType + model.PackageId + model.OutPackageId + model.IsUPU + model.DeliveryTime + model.UserName + token;
+            string md5str = model.PartnerId + model.Warehouse + model.ExpressType + model.PackageId + model.OutPackageId + model.IsUPU.ToString().ToLower() + model.DeliveryTime + model.UserName + token;
             string postUrl = "http://api.lvb.com:8080/delivery?Sing=" + MD5.GetMD5(md5str);
-            bool isTrue = DoPost(postUrl, JsonConvert.SerializeObject(model)).Result;
-            if (!isTrue)
-            {
-                return false;
-            }
-            return true;
+            Result result = DoPost(postUrl, JsonConvert.SerializeObject(model)).Result;
+            return result;
         }
+        
     }
 }
