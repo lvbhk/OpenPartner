@@ -25,7 +25,7 @@
  - 参数:  
    - PartnerId long 合作伙伴id
    - Warehouse String 系统中配置的仓库
-   - InPackageId String 仓库中唯一的包裹入库信息ID
+   - PackageId String 仓库中唯一的包裹入库信息ID
    - Sing String   以上参数链接起来然后加上Key,然后进行MD5 取32位的hash
  
  
@@ -52,7 +52,7 @@
 	"IsUPU":true,
 	"DiliveryTime":"2017-03-21 12:03:45",
 	"UserName":"Jack"	
-  }
+  }
 ```
 
    - 字段定义
@@ -104,7 +104,7 @@
 
 - 方法:`POST`
 - 参数:`JSON`
-- URL:`apiurl/created?`
+- URL:`apiurl/audited?`
 - Post Url参数:  
   `Sing=202cb962ac59075b964b07152d234b70`  
 - Post Body:
