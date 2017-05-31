@@ -3,15 +3,12 @@
 [![N|Solid](https://www.cnyto.me/resources/images/logo.png)](https://partner.cnyto.me)&copy;
 
 开发者根据该文档可是方便接入益钱开放平台，实现客户退税
-  - Type some Markdown on the left
-  - See HTML in the right
-  - Magic
+
 
 # 
 # 新特性 New Features!
 - 2017.03.24
   - 增加说明文档 
-  - Drag and drop images (requires your Dropbox account be linked)
 
 ## 益钱©API
 
@@ -21,12 +18,13 @@
  用户点击按钮跳转到益钱&copy;网站
 
  - 方法: `GET`
- - URL: `api.cnyto.me/create?`
- - 参数:  
+ - URL: `taxfree.cnyto.me/UserCenter/Order/create/PartnerId/Warehouse/PackageId`
+ - eg：`http://taxfree.cnyto.me/UserCenter/Order/create/832488781855727619/巴黎仓库/868031701887094784`
+ - 参数:  
    - PartnerId long 合作伙伴id
    - Warehouse String 系统中配置的仓库
    - PackageId String 仓库中唯一的包裹入库信息ID
-   - Sing String   以上参数链接起来然后加上Key,然后进行MD5 取32位的hash
+   - Sing String   以上参数链接起来然后加上Key(PartnerId + Warehouse + PackageId + Key),然后进行MD5 取32位的hash 编码UTF-8
  
  
 - 返回结果:
@@ -39,18 +37,18 @@
 - 参数:`JSON`
 - URL:`api.cnyto.me/delivery?`
 - Post Url参数:  
-  `Sing=202cb962ac59075b964b07152d234b70`  
+  - Sing String   Post Body参数链接起来然后加上Key(PartnerId + Warehouse + ExpressType + PackageId + OutPackageId + IsUPU + DiliveryTime + UserName + Key),然后进行MD5 取32位的hash 编码UTF-8
 - Post Body:
 
  ```json
   {
 	"PartnerId":"832488781855727619",
 	"Warehouse":"巴黎仓库",
+	"ExpressType":"法国邮政",
 	"PackageId":"1234567890",
 	"OutPackageId":"ac123578",
-	"ExpressType":"法国邮政",
 	"IsUPU":true,
-	"DiliveryTime":"2017-03-21 12:03:45",
+	"DiliveryTime":"1496200166", --TimeSpan
 	"UserName":"Jack"	
   }
 ```
@@ -77,7 +75,7 @@
 - 参数:`JSON`
 - URL:`apiurl/created?`
 - Post Url参数:  
-  `Sing=202cb962ac59075b964b07152d234b70`  
+   - Sing String   Post Body参数链接起来然后加上Key(PartnerId + Warehouse + PackageId + Key),然后进行MD5 取32位的hash 编码UTF-8
 - Post Body:
 
  ```json
@@ -87,7 +85,10 @@
 	"RebateOrderStatus":10
   }
 ```
-
+  - RebateOrderStatus
+    - 10 Waiting
+    - 20 Audited
+    - 30 Failed
 - 返回结果:
 
  ```json
@@ -106,22 +107,22 @@
 - 参数:`JSON`
 - URL:`apiurl/audited?`
 - Post Url参数:  
-  `Sing=202cb962ac59075b964b07152d234b70`  
+   - Sing String   Post Body参数链接起来然后加上Key(PartnerId + Warehouse + PackageId + Key),然后进行MD5 取32位的hash 编码UTF-8
 - Post Body:
 
  ```json
   {
 	"Warehouse":"巴黎仓库",
 	"PackageId":"1234567890",
-	"RebateOrderStatus":10,
+	"RebateOrderStatus":20,
   }
 ```
 
   - RebateOrderStatus
-    - 10
-    - 20
-    - 30
-
+    - 10 Waiting
+    - 20 Audited
+    - 30 Failed
+    
 - 返回结果:
  
  ```json
@@ -132,5 +133,4 @@
 }
 ```
 
- 
-**Free Software, Hell Yeah!**
+
