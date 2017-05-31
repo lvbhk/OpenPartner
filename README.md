@@ -18,8 +18,7 @@
  用户点击按钮跳转到益钱&copy;网站
 
  - 方法: `GET`
- - URL: `taxfree.cnyto.me/UserCenter/Order/create/PartnerId/Warehouse/PackageId`
- - eg：`http://taxfree.cnyto.me/UserCenter/Order/create/832488781855727619/巴黎仓库/868031701887094784`
+ - URL: `taxfree.cnyto.me/UserCenter/Order/create?`
  - 参数:  
    - PartnerId long 合作伙伴id
    - Warehouse String 系统中配置的仓库
