@@ -10,6 +10,18 @@
 - 2017.03.24
   - 增加说明文档 
 
+# 接入流程
+- 1.在益钱注册账号(https://login.cnyto.me/)
+- 2.联系益钱开通物流商
+- 3.在物流商平台获取开发者key和partnerId(http://partner.cnyto.me/PartnerCenter#/app/logisticsPartner/developer)
+- 4.接入退税接口
+- 5.设置apiurl（用于益钱退税申请通知和益钱退税单据审核通知）(http://partner.cnyto.me/PartnerCenter#/app/logisticsPartner/developer)
+- 测试demo，请先使用测试demo测试成功后再切换至正式环境
+  - `https://test.login.cnyto.me/` 用户授权中心
+  - `http://test.partner.cnyto.me:8080/`  合作物流商平台
+  - `http://test.taxfree.cnyto.me:8080/`   客户退税平台
+  - `http://test.api.cnyto.me:8080/`  用户发货api请求地址
+
 ## 益钱©API
 
 合作方--->益钱&copy;
@@ -18,7 +30,8 @@
  用户点击按钮跳转到益钱&copy;网站
 
  - 方法: `GET`
- - URL: `taxfree.cnyto.me/UserCenter/Order/create?`
+ - URL: `http://taxfree.cnyto.me/UserCenter/Order/create?`
+ - eg: `http://taxfree.cnyto.me/UserCenter/Order/create?PartnerId=832488781855727619&Warehouse=巴黎仓库&PackageId=872090330516819968&Sing=bfb4fc2fa60c9fad5f8bb7135c080d1f`
  - 参数:  
    - PartnerId long 合作伙伴id
    - Warehouse String 系统中配置的仓库
@@ -34,9 +47,10 @@
 
 - 方法:`POST`
 - 参数:`JSON`
-- URL:`api.cnyto.me/delivery?`
-- Post Url参数:  
-  - Sing String   Post Body参数链接起来然后加上Key(PartnerId + Warehouse + ExpressType + PackageId + OutPackageId + IsUPU + DiliveryTime + UserName + Key),然后进行MD5 取32位的hash 编码UTF-8
+- URL:`http://api.cnyto.me/delivery?`
+- eg: `http://api.cnyto.me/delivery?Sing=bfb4fc2fa60c9fad5f8bb7135c080d1f`
+- Post Url参数: 
+  - Sing String   Post Body参数链接起来然后加上Key(PartnerId + Warehouse + ExpressType + PackageId + OutPackageId + IsUPU + DiliveryTime + UserName + Key),然后进行MD5 取32位的hash 编码UTF-8
 - Post Body:
 
  ```json
