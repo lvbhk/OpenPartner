@@ -1,4 +1,4 @@
-# 益钱&copy;开放平台介入 OpenPartner API Document
+# 益钱&copy;开放平台接入 OpenPartner API Document
 
 [![N|Solid](https://www.cnyto.me/resources/images/logo.png)](https://partner.cnyto.me)&copy;
 
