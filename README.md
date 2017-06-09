@@ -117,7 +117,7 @@
     - ProductId 商品ID
     - UnitPrice 商品单价
     - Quantity 商品数量
-    - ProductName 商品名称
+    - ProductName 商品名称
 	
 ### 3. 用户发货通知 
 - #### 接口说明
