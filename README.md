@@ -32,7 +32,7 @@
  - 方法: `GET`
  - URL: `http://taxfree.cnyto.me/UserCenter/Order/create?`
  - eg: `http://taxfree.cnyto.me/UserCenter/Order/create?PartnerId=832488781855727619&Warehouse=巴黎仓库&PackageId=872090330516819968&Sing=bfb4fc2fa60c9fad5f8bb7135c080d1f`
- - 参数:  
+ - Url参数:  
    - PartnerId long 合作伙伴id
    - Warehouse String 系统中配置的仓库
    - PackageId String 仓库中唯一的包裹入库信息ID
@@ -42,32 +42,154 @@
 - 返回结果:
 	用户通过该URL跳转到益钱网站之后将会开始创建退税申请单，如果校验失败，将会提示用户
 	
-### 2. 用户发货通知 
-当用户成功进行了发货申请以后，合作方应通知益钱&copy;
+### 2. 商品信息查询接口 
+- #### 接口说明
+  - 审核通过以后可以通过该接口查询包裹的商品信息，一个入库包裹可能存在多个发票，每个发票存在多个商品
+
+- 方法:`GET`
+- URL:`http://api.cnyto.me/product?PackageIds=123,456&PartnerId=832488781855727619&Sing=bfb4fc2fa60c9fad5f8bb7135c080d1f`
+- Url参数: 
+  - Sing String   PackageIds+PartnerId+key,然后进行MD5 取32位的hash 编码UTF-8
+  - PackageIds String  包裹ID集，多个包裹ID以","隔开
+  - PartnerId long  合作伙伴id
+
+- 返回结果:
+ 
+```json
+    {
+	"StatusCode":200,
+	"Status":true,
+	"Message":"处理成功",
+	"Data":[
+	    {"PackageId":"123" ,
+		"Invoices":[
+		    { "InvoiceId":"123",
+		        "Products":[
+			    {
+				"ProductId":"123123123",
+				"ProductName":"nike shoses",
+				"UnitPrice":"10.00",
+				"Quantity":2
+			    },
+			    {
+				"ProductId":"123123123",
+				"ProductName":"nike shoses",
+				"UnitPrice":"10.00",
+				"Quantity":2
+			    }
+			]
+		    },
+		    { "InvoiceId":"456",
+			"Products":[
+			    {
+				"ProductId":"123123123",
+				"ProductName":"nike shoses",
+				"UnitPrice":"10.00",
+				"Quantity":2
+			    }
+			]
+		    }
+	    	]
+	    },
+	    {"PackageId":"packageid2" ,
+		"Invoices":[
+		    {"InvoiceId":"456",
+			"Products":[
+			    {
+			    	"ProductId":"123123123",
+				"ProductName":"addidas shoses",
+				"UnitPrice":"10.00",
+				"Quantity":2
+			    }
+			]
+		    }
+	    	]
+	    }
+	]
+    }
+```
+
+  - 返回结果字段定义
+    - PackageId 包裹ID
+    - Invoices 发票清单
+    - InvoiceId 发票ID
+    - Products 发票中的商品清单
+    - ProductId 商品ID
+    - UnitPrice 商品单价
+    - Quantity 商品数量
+	
+### 3. 用户发货通知 
+- #### 接口说明
+  - 1 单个包裹发货该数据只有一条，不需要商品信息(ProductsPro字段值为null)
+  - 2 合包裹发货，则存在多条数据，PackageId（入库包裹Id）不同，OutPackageId相同，不需要商品信息(ProductsPro字段值为null)
+  - 3 拆包发货，则存在多条数据，PackageId（入库包裹Id）相同，OutPackageId不同，同需要提交每个出库包裹的商品信息，商品ID(通过查询接口获取)和数量；如果不上传商品数据，在创建装箱单是需要手动选择出库包裹商品和数量
+  - 4 既存在合包又存在拆包时候，则存在多条数据，同需要提交每个出库包裹的商品信息，商品ID(通过查询接口获取)和数量；如果不上传商品数据，在创建装箱单是需要手动选择出库包裹商品和数量
 
 - 方法:`POST`
 - 参数:`JSON`
 - URL:`http://api.cnyto.me/delivery?`
 - eg: `http://api.cnyto.me/delivery?Sing=bfb4fc2fa60c9fad5f8bb7135c080d1f`
 - Post Url参数: 
-  - Sing String   Post Body参数链接起来然后加上Key(PartnerId + Warehouse + ExpressType + PackageId + OutPackageId + IsUPU + DiliveryTime + UserName + Key),然后进行MD5 取32位的hash 编码UTF-8
+  - Sing String   PostJsonTextContent+key,然后进行MD5 取32位的hash 编码UTF-8
 - Post Body:
 
  ```json
-  {
-	"PartnerId":"832488781855727619",
-	"Warehouse":"巴黎仓库",
-	"ExpressType":"法国邮政",
-	"PackageId":"1234567890",
-	"OutPackageId":"ac123578",
-	"IsUPU":true,
-	"DiliveryTime":"1496200166", --TimeSpan
-	"UserName":"Jack"	
-  }
+ [
+    {
+      "PartnerId": "832488781855727619",
+      "Warehouse": "巴黎仓库",
+      "ExpressType": "法国邮政",
+      "PackageId": "1234567890",
+      "OutPackageId": "12345",
+      "Products": [
+        {
+          "ProductId": "123123123",
+          "Quantity": 2
+        },
+        {
+          "ProductId": "123123123",
+          "Quantity": 2
+        }
+      ],
+      "IsUPU": true,
+      "DiliveryTime": "1496200166",
+      "UserName": "Jack"
+    },
+    {
+      "PartnerId": "832488781855727619",
+      "Warehouse": "巴黎仓库",
+      "ExpressType": "法国邮政",
+      "PackageId": "1234567890",
+      "OutPackageId": "12345",
+      "Products": [
+        {
+	  "ProductId": "123123123",
+          "Quantity": 2
+        },
+        {
+	  "ProductId": "123123123",
+          "Quantity": 2
+        }
+      ],
+      "IsUPU": true,
+      "DiliveryTime": "1496200166",
+      "UserName": "Jack"
+    }
+  ]
 ```
 
    - 字段定义
+     - PartnerId 合作伙伴ID
+     - Warehouse 仓库名称
+     - ExpressType 快递类型名称
+     - PackageId 包裹Id
+     - OutPackageId 发往国内的包裹ID
+     - Products 包裹中的商品清单
+     - ProductId 商品ID
+     - Quantity 商品数量
      - IsUPU 是否万国邮联
+     - DeliveryTime  发货时间（包裹发往国内的时间）,时间戳
+     - UserName 用户名（在合作伙伴系统中的用户名）
 - 返回结果:
  
 ```json
