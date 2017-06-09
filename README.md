@@ -62,8 +62,8 @@
 	"Message":"处理成功",
 	"Data":[
 	    {"PackageId":"123" ,
-		"Invoices":[
-		    { "InvoiceId":"123",
+		"RebateOrders":[
+		    { "RebateOrderId":"123",
 		        "Products":[
 			    {
 				"ProductId":"123123123",
@@ -79,7 +79,7 @@
 			    }
 			]
 		    },
-		    { "InvoiceId":"456",
+		    { "RebateOrderId":"456",
 			"Products":[
 			    {
 				"ProductId":"123123123",
@@ -92,8 +92,8 @@
 	    	]
 	    },
 	    {"PackageId":"packageid2" ,
-		"Invoices":[
-		    {"InvoiceId":"456",
+		"RebateOrders":[
+		    {"RebateOrderId":"456",
 			"Products":[
 			    {
 			    	"ProductId":"123123123",
@@ -111,8 +111,8 @@
 
   - 返回结果字段定义
     - PackageId 包裹ID
-    - Invoices 发票清单
-    - InvoiceId 发票ID
+    - RebateOrders 退税清单
+    - RebateOrderId 退税单ID
     - Products 发票中的商品清单
     - ProductId 商品ID
     - UnitPrice 商品单价
