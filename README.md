@@ -132,6 +132,7 @@
 - eg: `http://api.cnyto.me/delivery?Sing=bfb4fc2fa60c9fad5f8bb7135c080d1f`
 - Post Url参数: 
   - Sing String   PostJsonTextContent+key,然后进行MD5 取32位的hash 编码UTF-8
+    - 请保证PostJsonTextContent与下面json结构顺序一致
 - Post Body:
 
  ```json
@@ -139,9 +140,12 @@
     {
       "PartnerId": "832488781855727619",
       "Warehouse": "巴黎仓库",
-      "ExpressType": "法国邮政",
       "PackageId": "1234567890",
       "OutPackageId": "12345",
+      "ExpressType": "法国邮政",
+      "IsUPU": true,
+      "DiliveryTime": "1496200166",
+      "UserName": "Jack",
       "Products": [
         {
           "ProductId": "123123123",
@@ -151,17 +155,17 @@
           "ProductId": "123123123",
           "Quantity": 2
         }
-      ],
-      "IsUPU": true,
-      "DiliveryTime": "1496200166",
-      "UserName": "Jack"
+      ]
     },
     {
       "PartnerId": "832488781855727619",
       "Warehouse": "巴黎仓库",
-      "ExpressType": "法国邮政",
       "PackageId": "1234567890",
       "OutPackageId": "12345",
+      "ExpressType": "法国邮政",
+      "IsUPU": true,
+      "DiliveryTime": "1496200166",
+      "UserName": "Jack",
       "Products": [
         {
 	  "ProductId": "123123123",
@@ -171,10 +175,7 @@
 	  "ProductId": "123123123",
           "Quantity": 2
         }
-      ],
-      "IsUPU": true,
-      "DiliveryTime": "1496200166",
-      "UserName": "Jack"
+      ]
     }
   ]
 ```
