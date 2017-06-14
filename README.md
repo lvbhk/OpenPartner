@@ -18,9 +18,9 @@
 - 5.设置apiurl（用于益钱退税申请通知和益钱退税单据审核通知）(http://partner.cnyto.me/PartnerCenter#/app/logisticsPartner/developer)
 - 测试demo，请先使用测试demo测试成功后再切换至正式环境
   - `https://test.login.cnyto.me/` 用户授权中心
-  - `http://test.partner.cnyto.me:8080/`  合作物流商平台
-  - `http://test.taxfree.cnyto.me:8080/`   客户退税平台
-  - `http://test.api.cnyto.me:8080/`  用户发货api请求地址
+  - `http://test.partner.cnyto.me/`  合作物流商平台
+  - `http://test.taxfree.cnyto.me/`   客户退税平台
+  - `http://test.api.cnyto.me/`  用户发货api请求地址
 
 ## 益钱©API
 
