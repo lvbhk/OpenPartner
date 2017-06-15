@@ -3,6 +3,7 @@ package com.lvb.sdk;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
+import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -65,10 +66,10 @@ public class LvbApi {
 		return false; 
 	}
 	
-	public static boolean Delivery(DeliveryFilterModel model,String key){
+	public static boolean Delivery(List<DeliveryFilterModel> model,String key){
 		Gson gson = new Gson();
-		 String md5str = model.getPartnerId() + model.getWarehouse() + model.getExpressType() + model.getPackageId() + model.getOutPackageId() + model.isIsUPU() + model.getDeliveryTime() + model.getUserName() + key;
-	        String postUrl = "http://api.cnyto.me/delivery?Sing=" + MD5Util.string2MD5(md5str, "utf-8");
+		 String md5str = gson.toJson(model) + key;
+	        String postUrl = "http://test.api.cnyto.me/delivery?Sing=" + MD5Util.string2MD5(md5str, "utf-8");
 	        boolean isTrue = DoPost(postUrl,gson.toJson(model));
 	        System.out.println(isTrue);
 	        if (!isTrue) {

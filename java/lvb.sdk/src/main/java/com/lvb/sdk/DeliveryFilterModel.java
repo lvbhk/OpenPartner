@@ -1,5 +1,7 @@
 package com.lvb.sdk;
 
+import java.util.List;
+
 
 public class DeliveryFilterModel {
 
@@ -13,6 +15,15 @@ public class DeliveryFilterModel {
 
 	public String UserName;
 
+	public List<Product> Products;
+	
+	public List<Product> getProducts() {
+		return Products;
+	}
+
+	public void setProducts(List<Product> products) {
+		Products = products;
+	}
 	public String getUserName() {
 		return UserName;
 	}
