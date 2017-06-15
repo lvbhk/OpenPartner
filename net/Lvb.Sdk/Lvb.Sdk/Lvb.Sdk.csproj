@@ -49,7 +49,6 @@
   <ItemGroup>
     <Compile Include="DeliveryFilterModel.cs" />
     <Compile Include="HttpClintHelper.cs" />
-    <Compile Include="LvbApi.cs" />
     <Compile Include="MD5.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

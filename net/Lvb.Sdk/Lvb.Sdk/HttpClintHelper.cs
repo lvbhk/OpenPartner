@@ -42,13 +42,13 @@ namespace Lvb.Sdk
             return result;
         }
 
-        public static Result Delivery(DeliveryFilterModel model, string token)
+        public static Result Delivery(List<DeliveryFilterModel> model, string token)
         {
-            string md5str = model.PartnerId + model.Warehouse + model.ExpressType + model.PackageId + model.OutPackageId + model.IsUPU.ToString().ToLower() + model.DeliveryTime + model.UserName + token;
-            string postUrl = "http://api.lvb.com:8080/delivery?Sing=" + MD5.GetMD5(md5str);
+            string md5str = JsonConvert.SerializeObject(model) + token;
+            string postUrl = "http://test.api.cnyto.me/delivery?Sing=" + MD5.GetMD5(md5str);
             Result result = DoPost(postUrl, JsonConvert.SerializeObject(model)).Result;
             return result;
         }
-        
+
     }
 }
