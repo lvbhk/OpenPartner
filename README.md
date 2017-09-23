@@ -140,6 +140,8 @@
 - Post Url参数: 
   - Sing String   PostJsonTextContent+key,然后进行MD5 取32位的hash 编码UTF-8
     - 请保证PostJsonTextContent与下面json结构顺序一致
+  - auto bool  可选参数 auto=true 时益钱自动处理业务
+    - 益钱自动处理业务仅限于物流商不提供分包及合包业务
 - Post Body:
 
  ```json
@@ -209,10 +211,26 @@
 }
 ```
 
-### 4. 上传发货包裹面单接口
+### 4. 上传发货包裹面单接口 (可选)
   物流合作方生成包裹面单以后，可以使用此接口自动向益钱推送包裹面单文件
   
-  开发中...
+- 方法:`POST`
+- 参数:`JSON`
+- URL:`http://api.cnyto.me/upload?`
+- eg: `http://api.cnyto.me/upload?Sing=bfb4fc2fa60c9fad5f8bb7135c080d1f`
+- Post Url参数: 
+  - Sing String   PartnerId+SaleInvoiceId+key,然后进行MD5 取32位的hash 编码UTF-8
+    - SaleInvoiceId在 益钱出口单据创建通知中 
+- Post Body:
+
+```json
+{
+  	"FileData": "iyjhrkhewrhewnb...", -base64string
+  	"FileName": "cn23.pdf",
+  	"PartnerId": "832488781855727619",
+  	"SaleInvoiceId": "876685896928858112"
+}
+```
  
 ## 合作方API
 益钱&copy;--->合作方
@@ -280,7 +298,21 @@
 	"Message":"处理成功"
 }
 ```
-### 4.益钱出口单据创建通知
+### 3.益钱出口单据创建通知
   当出口发票被创建（可能是自动，或者手动，参见发发货通知）后，以前将会想合作伙伴推送创建的出口发票数据
- 开发中。。。
+- 方法:`POST`
+- 参数:`JSON`
+- URL:`apiurl/auto?`
+- Post Url参数:
+  - Sing String   PartnerId+SaleInvoiceId+key,然后进行MD5 取32位的hash 编码UTF-8
+    - SaleInvoiceId在 益钱出口单据创建通知中 
+- Post Body:
+
+```json
+{
+  	"PackageId": "976685892138854321",
+  	"SaleInvoiceId": "876685896928858112",
+  	"Amount": "2400"
+}
+```
 
