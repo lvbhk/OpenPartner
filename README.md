@@ -224,7 +224,7 @@
 - URL:`http://api.cnyto.me/upload?`
 - eg: `http://api.cnyto.me/upload?Sing=bfb4fc2fa60c9fad5f8bb7135c080d1f`
 - Post Url参数: 
-  - Sing String   PartnerId+OutPackageId+FileData+key,然后进行MD5 取32位的hash 编码UTF-8
+  - Sing String   PartnerId+OutPackageId+FileData+FileName+key,然后进行MD5 取32位的hash 编码UTF-8
 - Post Body:
 
 ```json
