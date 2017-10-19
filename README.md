@@ -158,7 +158,7 @@
       "OutPackageId": "12345",
       "ExpressType": "法国邮政",
       "IsUPU": true,
-      "DiliveryTime": "1496200166",
+      "DeliveryTime": "1496200166",
       "UserName": "Jack",
       "Products": [
         {
@@ -178,7 +178,7 @@
       "OutPackageId": "12345",
       "ExpressType": "法国邮政",
       "IsUPU": true,
-      "DiliveryTime": "1496200166",
+      "DeliveryTime": "1496200166",
       "UserName": "Jack",
       "Products": [
         {
