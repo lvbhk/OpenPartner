@@ -322,7 +322,7 @@
 - 参数:`JSON`
 - URL:`apiurl/SaleInvoiceCreated?`
 - Post Url参数:
-  - Sing String   PartnerId+OutPackageId+SaleInvoiceNo+Amount+key,然后进行MD5 取32位的hash 编码UTF-8
+  - Sing String   PartnerId+OutPackageId+SaleInvoiceNo+Amount+Quantity+key,然后进行MD5 取32位的hash 编码UTF-8
      
 - Post Body:
 
@@ -330,13 +330,15 @@
 {
   	"OutPackageId": "976685892138854321",
   	"SaleInvoiceNo": "876685896928858112",
-  	"Amount": "2400"
+  	"Amount": "2400",
+	"Quantity":"5"
 }
 ```
 - 字段定义
 	- OutPackageId String 出库订单号
 	- SaleInvoiceNo String 出口发票号，用于填写在发货面单上指定位置
 	- Amount String 金额，用于填写在发货面单上指定位置
+	- Quantity String 数量，用于填写在发货面单上指定位置
 	- PartnerId String 合作伙伴id
     
 - 返回结果:
